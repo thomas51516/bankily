@@ -12,9 +12,6 @@ Installation
 
 Clonez le dépôt :
 
-git clone <URL_DU_DEPOT>
-cd <NOM_DU_DEPOT>
-
 Créez un environnement virtuel (recommandé) :
 
 python3 -m venv env
