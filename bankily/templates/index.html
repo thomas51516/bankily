@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion / Inscription</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h3>Bienvenue</h3>
+                    </div>
+                    <div class="m-3">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                <div class="alert alert-{{ category }}">{{ message }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                    <div class="card-body">
+                        <!-- Tabs -->
+                        <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="connexion-tab" data-bs-toggle="tab" data-bs-target="#connexion" type="button" role="tab" aria-controls="connexion" aria-selected="true">Connexion</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="inscription-tab" data-bs-toggle="tab" data-bs-target="#inscription" type="button" role="tab" aria-controls="inscription" aria-selected="false">Inscription</button>
+                            </li>
+                        </ul>
+
+                        <!-- Tab Content -->
+                        <div class="tab-content" id="myTabContent">
+                            <!-- Connexion Form -->
+                            <div class="tab-pane fade show active" id="connexion" role="tabpanel" aria-labelledby="connexion-tab">
+                                <form method="post" action="/login">
+                                    <div class="mb-3">
+                                        <label for="loginEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="loginEmail" name="loginEmail" placeholder="Entrez votre email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="loginPassword" class="form-label">Mot de passe</label>
+                                        <input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="Entrez votre mot de passe">
+                                    </div>
+                                    <button type="submit" class="btn btn-success w-100">Se connecter</button>
+                                    <div class="text-center mt-3">
+                                        <p class="mb-0">Pas de compte ? <a href="#" onclick="switchToInscription()">Créer un compte</a></p>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Inscription Form -->
+                            <div class="tab-pane fade" id="inscription" role="tabpanel" aria-labelledby="inscription-tab">
+                                <form method="post" action="/register">
+                                    <div class="mb-3">
+                                        <label for="signupName" class="form-label">Nom</label>
+                                        <input type="text" class="form-control" id="signupName" name="signupName" placeholder="Entrez votre nom">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="signupEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="signupEmail" name="signupEmail" placeholder="Entrez votre email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="signupPassword" class="form-label">Mot de passe</label>
+                                        <input type="password" class="form-control" id="signupPassword" name="signupPassword" placeholder="Créez un mot de passe">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript to switch tabs -->
+    <script>
+        function switchToInscription() {
+            const inscriptionTab = new bootstrap.Tab(document.querySelector('#inscription-tab'));
+            inscriptionTab.show();
+        }
+    </script>
+</body>
+</html>
